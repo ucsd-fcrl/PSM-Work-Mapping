@@ -21,10 +21,14 @@ Regional strain is computed in *CalculateTriStrain.m*. This script inputs the me
 In this study, we evaluated five different myocardial work estimates that utilize the same regional strain measurement, but explore different approximation of regional stress.
 
 1. Left heart catheterization-based LV pressure-strain area (P<sub>LHC</sub>SA)
-   Scripts needed to compute work estimates: *CalculateTriMW.m*
-   Data files needed: *RS_CT.mat*, *WorkPSMLBBBCRT.mat*
-   Scripts where necessary data is generated: *PrincipalCurvatureAnalysis2.mat*
-   File where results are stored: *MWCT_tris.mat*
+
+   ***Scripts needed to compute work estimates:***  *CalculateTriMW.m*
+
+   ***Data files needed:*** *RS_CT.mat*, *WorkPSMLBBBCRT.mat*
+
+   ***Scripts where necessary data is generated:*** *PrincipalCurvatureAnalysis2.mat*
+   
+   ***File where results are stored:*** *MWCT_tris.mat*
 
    ***Description:*** P<sub>LHC</sub>SA is computed in *CalculateTriMW.m*. This script inputs the regional strain results *RS_CT.mat* and the patient-specific LV pressure waveforms recorded from pre-CRT left-heart catheterization. These waveforms are stored in *WorkPSMLBBBCRT.mat*, which stores the pre-CRT PSM results. P<sub>LHC</sub>SA is computed as the area of the LV pressure-regional strain loop area for each element on the mesh, and the result is stored in *MWCT_tris.mat*.
 
