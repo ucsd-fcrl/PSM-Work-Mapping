@@ -22,6 +22,13 @@ In this study, we evaluated five different myocardial work estimates that utiliz
 
 1. Left heart catheterization-based LV pressure-strain area (P<sub>LHC</sub>SA)
    P<sub>LHC</sub>SA is computed in *CalculateTriMW.m*. This script inputs the regional strain results *RS_CT.mat* and the patient-specific LV pressure waveforms recorded from pre-CRT left-heart catheterization. These waveforms are stored in *WorkPSMLBBBCRT.mat*, which stores the pre-CRT PSM results. P<sub>LHC</sub>SA is computed as the area of the LV pressure-regional strain loop area for each element on the mesh, and the result is stores in *MWCT_tris.mat*.
+
    This script also computes AHA segment-based segmental P<sub>LHC</sub>SA and PSM-derived work. These results are stored as variables *segMWCT_allpats* and *segWork_allpats* respectively in data file *all_seg_work_all_pats.mat*.
+
+2 & 3. End-diastolic wall stress-strain area (WS<sub>ED</sub>SA) and Time-varying wall stress-strain area (WS<sub>TV</sub>SA)
+   These two work estimates leverage the law of Laplace to compute regional wall stress, which states that wall stress is proportional to cavity pressure, wall thickness, and cavity radius. These wall stresses are computed in *calculateSimpleWork.m*. (WS<sub>ED</sub>SA) is stores as variable *MWCTLP* and (WS<sub>TV</sub>SA) is stored as variable *MWCTLPTV* in the data file *Laplace_work_all_patches.mat*.
+
+   To calculate these two approximations, regional radius and wall thickness information is needed. Both variables are generated in script *PrincipalCurvatureAnalysis2.mat*. Regional radius is computed as the effective radius, which is calculated for each AHA segment by fitting an ellipsoid to the patient-specific geoemtric model. The effective radius is stored as variable *r_eff_allpats*. Regional wall thickness information is stored in the *Segmental Wall Thickness Measurements* folder and save as variable *thickness_data*. Both variables are saved in data file *Laplace_measurements.mat*
+  
    
   
