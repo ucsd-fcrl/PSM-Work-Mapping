@@ -1,5 +1,7 @@
 # PSM-Work-Mapping
-This repo contains data and analysis scripts used referred to in the manuscript *Successful Cardiac Resynchronization Therapy Reduced Negative Septal Work in Patient-Specific Models of Dyssynchronous Heart Failure*.  doi: 
+This repo contains data and analysis scripts reported in the manuscript *Successful Cardiac Resynchronization Therapy Reduced Negative Septal Work in Patient-Specific Models of Dyssynchronous Heart Failure*.  
+
+doi: 
 
 It contains two directories, a Patient-Specific Modeling directory and a Simplified Work Estimates directory. Documentation for each directory is below.
 
@@ -50,6 +52,8 @@ In this study, we evaluated five different myocardial work estimates that utiliz
 
    To calculate these two approximations, regional radius and wall thickness information is needed. Both variables are generated in script *PrincipalCurvatureAnalysis2.mat*. Regional radius is computed as the regional effective radius, which is calculated for each AHA segment by fitting an ellipsoid to the patient-specific geometric model. The effective radius is stored as variable *r_eff_allpats*. Regional wall thickness information was deried from the patient-specific geometric model. Wall thickness data is stored in the *Segmental Wall Thickness Measurements* folder and saved as variable *thickness_data*. Both variables are saved in data file *Laplace_measurements.mat*
 
+      The *PrincipalCurvatureAnalysis2.mat* script also computes AHA segment-based segmental WS<sub>ED</sub>SA and WS<sub>TV</sub>SA. These results are stored as variables *segMWCTLP* and *segMWCTLPTV* respectively in data file *segMWCT_effrad_allpats.mat*.
+
 ***4. Generic pressure-strain area (P<sub>gen</sub>SA)***
 
 ***5. Scaled generic pressure-strain area (P<sub>gen,scaled</sub>SA)***
@@ -62,6 +66,15 @@ In this study, we evaluated five different myocardial work estimates that utiliz
    File where results are stored: *GenericLVP_work_all_patches.mat*
    
    ***Description:*** These two work estimates use two different generic LV pressure waveforms as a surrogate for stress to evaluate the extent of patient-specific information needed to obtain a clinically useful myocardial work approximation. P<sub>gen</sub>SA uses a generic LV pressure waveform with no patient-specific information, while P<sub>gen,scaled</sub>SA uses a generic LV pressure waveform scaled to patient-specific peak pressure. The digitized generic waveform is stored as *Generic Pressure Strain Estimate/generic_LVP.csv*. The waveforms are then computed for each patient in script *evaluateLVPestimates.m* and stored as variables *genericLVP* and *genericLVP_ESP*. These waveforms were then used to approximate work for each patch on the LV in script *calculateSimpleWork.m*. P<sub>gen</sub>SA and P<sub>gen,scaled</sub>SA were stored as variables *MWCTgenericLVP* and *MWCTgenericLVP_patES* respectively in data file *GenericLVP_work_all_patches.mat*.
+
+   The *evaluateLVPestimates.mat* script also computes AHA segment-based segmental P<sub>gen</sub>SA and P<sub>gen,scaled</sub>SA. These results are stored as variables *segMWCT_genericLVP* and *segMWCT_genericLVP_patES* respectively in data file *segMWCT_genericLVP_allpats.mat*.
+
+### Analyzing simple myocardial work approximations comparison to PSM-based work
+   Scripts needed to compare PSM-based work and simple work estimates: *CRT_responder_analysis2.mat*
+
+   Data files needed: *WorkPSMLBBBCRT.mat*, *MWCT_tris.mat*, *Laplace_work_all_patches.mat*, *GenericLVP_work_all_patches.mat*, *PatchAreas.mat*
+
+   ***Description:*** Comparison of PSM-based work and simple work estimated was computed in script *CRT_responder_analysis2.mat*. This script compares the coefficient of variance of work (COVW), the LV fraction performing negative work (V<sub>f</sub>LVNW and S<sub>f</sub>LVNW), and the septal fraction performing negative work (V<sub>f</sub>STNW and S<sub>f</sub>STNW). In the manuscript, COVW results are shown in **Figure 5** and LV and septal negative work fraction resutls are shown in **Figure 9**. These results are also reported in **Table 4**.
 
   
    
