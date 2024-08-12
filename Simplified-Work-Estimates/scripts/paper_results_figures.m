@@ -5,7 +5,13 @@ clc;
 % lines 337 - 494: Figure S3
 % lines 676 - 773: Figure S1
 
-figpath = '/Users/amandacraine/Documents/ContijochLab/repos/CRT-PLOS-Submission-pre-repo/figures/';
+% NOTE: make sure your home path is the Simplified Work Estimates directory
+homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
+addpath([homepath,'/data/'])
+addpath([homepath,'/scripts'])
+addpath([homepath,'/figures'])
+figpath = [homepath,'/figures/'];
+cd(homepath)
 % get data
 %more elaborate MWCT Estimates
 load all_seg_work_all_pats.mat %this came from calculateTriMW.m

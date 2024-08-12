@@ -10,10 +10,17 @@
 %to add: fishers transformation to evaluate how different the relatinships
 %are to the ground truth
 clear; clc
-%cd('/Users/amandacraine/Documents/ContijochLab/repos/ac-biv-mwct-validation')
-figpath = '/Users/amandacraine/Documents/ContijochLab/repos/CRT-PLOS-Submission-pre-repo/figures/';
-%addpath("readObj/")
-addpath("CRT Analysis Scripts/")
+
+
+% NOTE: make sure your home path is the Simplified Work Estimates directory
+homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
+addpath([homepath,'/data/'])
+addpath([homepath,'/scripts'])
+addpath([homepath,'/LV Geometric Models'])
+addpath([homepath,'/figures'])
+figpath = [homepath,'/figures/'];
+addpath([homepath,'/scripts/CRT Analysis Scripts/'])
+cd(homepath)
 
 %need the work values for all points
 load("WorkPSMLBBBCRT.mat")
@@ -252,13 +259,12 @@ end
 % end
 
 %%
-cd('/Volumes/MainShare/projects/PSM/PSM/')
-
+cd('data/')
 load("WorkPSMLBBBCRT.mat")
+cd ('../scripts')
 WorkMetrics
-WorkPatMetric
+WorkPatAllMetric
 
-cd('/Users/amandacraine/Documents/ContijochLab/repos/ac-biv-mwct-validation')
 %% correlation between negative work and change in ESV
 meas_idx = 1; %1 for LV, 2 for septum
 

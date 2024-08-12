@@ -7,7 +7,11 @@
 %pressure waveforms.
 clear; clc
 
-homepath = '/Users/amandacraine/Documents/ContijochLab/repos/CRT-PLOS-Submission-pre-repo';
+% NOTE: make sure your home path is the Simplified Work Estimates directory
+homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
+addpath([homepath,'/data/'])
+addpath([homepath,'/scripts'])
+addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
 savepath = [homepath '/data-collected/'];
 load RS_CT.mat

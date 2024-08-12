@@ -5,9 +5,13 @@
 %as a surrogate for stress
 
 clear; clc
-%cd('/Users/amandacraine/Documents/ContijochLab/repos/ac-biv-mwct-validation')
 %estimate 1: LV cath pressure
-homepath = '/Users/amandacraine/Documents/ContijochLab/repos/CRT-PLOS-Submission-pre-repo';
+
+% NOTE: make sure your home path is the Simplified Work Estimates directory
+homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
+addpath([homepath,'/data/'])
+addpath([homepath,'/scripts'])
+addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
 savepath = [homepath '/data-collected/'];
 

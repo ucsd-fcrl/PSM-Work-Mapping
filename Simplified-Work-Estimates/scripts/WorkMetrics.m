@@ -2,7 +2,7 @@ clc;
 %cd('/Volumes/MainShare/projects/PSM/PSM/')
 numPatients = 8;
 %patOrder = [6 3 5 1 8 2 4 7];
-parOrder = 1:8;
+patOrder = 1:8;
 
 lvNegFraction = cell(1,numsol);
 rvNegFraction = cell(1,numsol);

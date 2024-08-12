@@ -8,7 +8,14 @@
 % calculated and saved here
 
 clear; clc
-homepath = '/Users/amandacraine/Documents/ContijochLab/repos/CRT-PLOS-Submission-pre-repo';
+% NOTE: make sure your home path is the Simplified Work Estimates directory
+homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
+addpath([homepath,'/data/'])
+addpath([homepath,'/scripts'])
+addpath([homepath,'/LV Geometric Models'])
+addpath([homepath,'/figures'])
+figpath = [homepath,'/figures/'];
+addpath([homepath,'/scripts/CRT Analysis Scripts/'])
 cd(homepath)
 load("WorkPSMLBBBCRT.mat")
 savepath = [homepath '/data-collected/'];
@@ -31,7 +38,7 @@ axis square
 
 %% can we fit an arbitrary ellipsoid to a segment or patch?
 clear; clc
-addpath('ellipsoid_fit/ellipsoid_fit/')
+addpath([homepath,'scripts/ellipsoid_fit/ellipsoid_fit/'])
 load RS_CT.mat
 load WorkPSMLBBBCRT.mat
 
