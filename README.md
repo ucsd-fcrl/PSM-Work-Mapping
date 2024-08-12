@@ -52,7 +52,7 @@ In this study, we evaluated five different myocardial work estimates that utiliz
 
    To calculate these two approximations, regional radius and wall thickness information is needed. Both variables are generated in script *PrincipalCurvatureAnalysis2.mat*. Regional radius is computed as the regional effective radius, which is calculated for each AHA segment by fitting an ellipsoid to the patient-specific geometric model. The effective radius is stored as variable *r_eff_allpats*. Regional wall thickness information was deried from the patient-specific geometric model. Wall thickness data is stored in the *Segmental Wall Thickness Measurements* folder and saved as variable *thickness_data*. Both variables are saved in data file *Laplace_measurements.mat*
 
-      The *PrincipalCurvatureAnalysis2.mat* script also computes AHA segment-based segmental WS<sub>ED</sub>SA and WS<sub>TV</sub>SA. These results are stored as variables *segMWCTLP* and *segMWCTLPTV* respectively in data file *segMWCT_effrad_allpats.mat*.
+   The *PrincipalCurvatureAnalysis2.mat* script also computes AHA segment-based segmental WS<sub>ED</sub>SA and WS<sub>TV</sub>SA. These results are stored as variables *segMWCTLP* and *segMWCTLPTV* respectively in data file *segMWCT_effrad_allpats.mat*.
 
 ***4. Generic pressure-strain area (P<sub>gen</sub>SA)***
 
@@ -74,7 +74,9 @@ In this study, we evaluated five different myocardial work estimates that utiliz
 
    Data files needed: *WorkPSMLBBBCRT.mat*, *MWCT_tris.mat*, *Laplace_work_all_patches.mat*, *GenericLVP_work_all_patches.mat*, *PatchAreas.mat*
 
-   ***Description:*** Comparison of PSM-based work and simple work estimated was computed in script *CRT_responder_analysis2.mat*. This script compares the coefficient of variance of work (COVW), the LV fraction performing negative work (V<sub>f</sub>LVNW and S<sub>f</sub>LVNW), and the septal fraction performing negative work (V<sub>f</sub>STNW and S<sub>f</sub>STNW). In the manuscript, COVW results are shown in **Figure 5** and LV and septal negative work fraction resutls are shown in **Figure 9**. These results are also reported in **Table 4**.
+   ***Description:*** Comparison of PSM-based work and simplfied work of CRT responders and non-responders at baseline was computed in script *CRT_responder_analysis2.mat*. This script compares the baseline coefficient of variance of work (COVW), the LV fraction performing negative work (V<sub>f</sub>LVNW and S<sub>f</sub>LVNW), and the septal fraction performing negative work (V<sub>f</sub>STNW and S<sub>f</sub>STNW) between responders and non-responders. In the manuscript, COVW results are shown in **Figure 5** and LV and septal negative work fraction resutls are shown in **Figure 9**. These results are also reported in **Table 4**.
+
+   Agreement between PSM-based work and simplified work estimates as described in the simplified work supplement was computed in the *paper_results_figures.mat* script. In this script, we compared model-based segmental peak strain and simplified segmental peak strain, and model-based segmental work and simplified segmental work across all patients. The segmental strain comparison is shown is **Figure S1** and **Table S1** of the supplement. The semgental work comparison across all patients is shown in **Figure S2** and and for one representative patient in **Figure S3**. All segmental work comparisons are reported in **Table S3**.
 
   
    
