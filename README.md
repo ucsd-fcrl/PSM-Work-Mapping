@@ -1,7 +1,7 @@
 # PSM-Work-Mapping
-Patient-specific modeling assessment of myocardial work with simple and robust clinical datasets
+This repo contains data and analysis scripts used referred to in the manuscript *Successful Cardiac Resynchronization Therapy Reduced Negative Septal Work in Patient-Specific Models of Dyssynchronous Heart Failure*.  doi: 
 
-This repo is split into two directories, a Patient-Specific Modeling directory and a Simplified Work Estimates directory. Documentation for each directory is below.
+It contains two directories, a Patient-Specific Modeling directory and a Simplified Work Estimates directory. Documentation for each directory is below.
 
 
 ## Patient-Specific Modeling
@@ -35,6 +35,7 @@ In this study, we evaluated five different myocardial work estimates that utiliz
    This script also computes AHA segment-based segmental P<sub>LHC</sub>SA and PSM-derived work. These results are stored as variables *segMWCT_allpats* and *segWork_allpats* respectively in data file *all_seg_work_all_pats.mat*.
 
 ***2. End-diastolic wall stress-strain area (WS<sub>ED</sub>SA)***
+
 ***3. Time-varying wall stress-strain area (WS<sub>TV</sub>SA)***
    
    Scripts needed to compute work estimates: *calculateSimpleWork.m*
@@ -48,6 +49,20 @@ In this study, we evaluated five different myocardial work estimates that utiliz
    ***Description:*** These two work estimates leverage the law of Laplace to compute regional wall stress, which states that wall stress is proportional to cavity pressure, wall thickness, and cavity radius. WS<sub>ED</sub>SA applied  regional shape information at end-diastole, while WS<sub>TV</sub>SA applied regional shape information for the whole cardiac cycle. These wall stresses are computed in *calculateSimpleWork.m* using the function *calculatePatchWorkEstimates*. (WS<sub>ED</sub>SA) is stored as variable *MWCTLP* and (WS<sub>TV</sub>SA) is stored as variable *MWCTLPTV* in the data file *Laplace_work_all_patches.mat*.
 
    To calculate these two approximations, regional radius and wall thickness information is needed. Both variables are generated in script *PrincipalCurvatureAnalysis2.mat*. Regional radius is computed as the regional effective radius, which is calculated for each AHA segment by fitting an ellipsoid to the patient-specific geometric model. The effective radius is stored as variable *r_eff_allpats*. Regional wall thickness information was deried from the patient-specific geometric model. Wall thickness data is stored in the *Segmental Wall Thickness Measurements* folder and saved as variable *thickness_data*. Both variables are saved in data file *Laplace_measurements.mat*
+
+***4. Generic pressure-strain area (P<sub>gen</sub>SA)***
+
+***5. Scaled generic pressure-strain area (P<sub>gen,scaled</sub>SA)***
+   Scripts needed to compute work estimates: *calculateSimpleWork.m*
+   
+   Data files needed: *genericLVPs.mat*, *Generic Pressure Strain Estimate/generic_LVP.csv*
+   
+   Scripts where necessary data is generated: *evaluateLVPestimates.m*
+   
+   File where results are stored: *GenericLVP_work_all_patches.mat*
+   
+   ***Description:*** These two work estimates use two different generic LV pressure waveforms as a surrogate for stress to evaluate the extent of patient-specific information needed to obtain a clinically useful myocardial work approximation. P<sub>gen</sub>SA uses a generic LV pressure waveform with no patient-specific information, while P<sub>gen,scaled</sub>SA uses a generic LV pressure waveform scaled to patient-specific peak pressure. The digitized generic waveform is stored as *Generic Pressure Strain Estimate/generic_LVP.csv*. The waveforms are then computed for each patient in script *evaluateLVPestimates.m* and stored as variables *genericLVP* and *genericLVP_ESP*. These waveforms were then used to approximate work for each patch on the LV in script *calculateSimpleWork.m*. P<sub>gen</sub>SA and P<sub>gen,scaled</sub>SA were stored as variables *MWCTgenericLVP* and *MWCTgenericLVP_patES* respectively in data file *GenericLVP_work_all_patches.mat*.
+
   
    
   
