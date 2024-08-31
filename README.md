@@ -7,8 +7,7 @@ It contains two directories, a Patient-Specific Modeling directory and a Simplif
 
 
 ## Patient-Specific Modeling
-Adarsh: put your documentation here
-
+The methods used for simulating the patient-specific models are explained in detail in our paper ["Patient-specific models of cardiac biomechanics"](https://www.sciencedirect.com/science/article/abs/pii/S0021999112005463). The patient-specific models for each patient (BiV1 to BiV8) are available in the data repository. Each folder has results from two simulation runs: LBBB baseline (Parameter 1) and CRT (Parameter 4), using the optimized activation delay for each patient. Each simulation folder contains the Continuity file for each patient with the patient-specific parameters, the complete deformed meshes for the 10th beat of simulation, and the processed stress and strain data for the 10th beat. There is also a processed file called iphases.mat that contains the timing for the opening and closing of the aortic and mitral valves.
 
 
 ## Simplified Work Estimates
