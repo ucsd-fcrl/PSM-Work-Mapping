@@ -15,14 +15,15 @@ addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
 savepath = [homepath '/data-collected/'];
 load RS_CT.mat
-load WorkPSMLBBBCRT.mat
+load dataPSMLBBBCRT.mat
 
 %% Laplace wall stress-strain area
 load segMWCT_effrad_allpats.mat
 load Laplace_measurements.mat
-
+warning off
 %get segmental lapalce calculations
 for pat = 1:8
+    disp(['Analyzing patient ',num2str(pat)])
     foldpath = [homepath '/LV Geometric Models/BiV1-8/BiV',num2str(pat)];
     for time = 1:length(t{pat})
         %load in thickness data
@@ -50,6 +51,7 @@ save([savepath 'Laplace_work_all_patches.mat'],'MWCTLP','MWCTLPTV')
 load genericLVPs.mat
 
 for pat = 1:8
+    disp(['Analyzing patient ',num2str(pat)])
     foldpath = [homepath '/LV Geometric Models/BiV1-8/BiV',num2str(pat)];
     for time = 1:length(t{pat})
         %load in thickness data

@@ -23,7 +23,7 @@ addpath([homepath,'/scripts/CRT Analysis Scripts/'])
 cd(homepath)
 
 %need the work values for all points
-load("WorkPSMLBBBCRT.mat")
+load dataPSMLBBBCRT.mat
 
 %PSA work 
 load('MWCT_tris.mat')

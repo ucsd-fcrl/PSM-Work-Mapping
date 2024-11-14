@@ -15,13 +15,14 @@ addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
 savepath = [homepath '/data-collected/'];
 
-load WorkPSMLBBBCRT.mat
+load dataPSMLBBBCRT.mat
 load MWCT_tris.mat
 load RS_CT.mat
 addpath('Generic Pressure-Strain Estimate/')
 
 %%
 %addpath("readObj/")
+mmHg = 7.5006; %convert pressures from mmHg to kPa
 for pat = 1:8
     foldpath = [homepath '/LV Geometric Models/BiV1-8/BiV',num2str(pat)];
 

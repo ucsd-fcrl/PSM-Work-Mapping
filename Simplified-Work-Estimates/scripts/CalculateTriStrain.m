@@ -1,7 +1,7 @@
-clear; clc
-%Lines 4 - 18 are calculating RSCT.
-% lines 22 - 165 collects seg_strain_allpats
+%Lines 4 - 26 are calculating RSCT.
+% lines 27 - 170 collects seg_strain_allpats
 
+clear; clc
 % NOTE: make sure your home path is the Simplified Work Estimates directory
 homepath = '/Users/amandacraine/Documents/ContijochLab/repos/PSM-Work-Mapping/Simplified-Work-Estimates';
 addpath([homepath,'/data/'])
@@ -29,7 +29,7 @@ save([savepath 'RS_CT.mat'],'RS_CT')
 % addpath('readObj/')
 
 load RS_CT.mat
-load WorkPSMLBBBCRT.mat
+load dataPSMLBBBCRT.mat
 
 r = zeros(8,4);
 p = zeros(8,4);
@@ -120,20 +120,20 @@ for pat = 1:8
     numTimePoints = length(t{i});
     segRSCT = zeros(17,numTimePoints);
     seg_strain = zeros(17,numTimePoints);
-    seg_strainpf = zeros(17,numTimePoints);
-    seg_strainpc = zeros(17,numTimePoints);
-    seg_strainps = zeros(17,numTimePoints);
+    % seg_strainpf = zeros(17,numTimePoints);
+    % seg_strainpc = zeros(17,numTimePoints);
+    % seg_strainps = zeros(17,numTimePoints);
     % seg_strainF = zeros(17,numTimePoints);
     % seg_strainC = zeros(17,numTimePoints);
     % seg_strainS = zeros(17,numTimePoints);
 
-    for region = 1:17
-        segRSCT(region,:) = mean(RS_CT{i}(TriSegElems == region,:));
-        seg_strain(region,:) = mean(totalstrain{i}(pointsSeg == region,:));
-        seg_strainpf(region,:) = mean(strainpf{i}(pointsSeg == region,:));
-        seg_strainpc(region,:) = mean(strainpc{i}(pointsSeg == region,:));
-        seg_strainps(region,:) = mean(strainps{i}(pointsSeg == region,:));
-    end
+     for region = 1:17
+         segRSCT(region,:) = mean(RS_CT{i}(TriSegElems == region,:));
+         seg_strain(region,:) = mean(totalstrain{i}(pointsSeg == region,:));
+    %     seg_strainpf(region,:) = mean(strainpf{i}(pointsSeg == region,:));
+    %     seg_strainpc(region,:) = mean(strainpc{i}(pointsSeg == region,:));
+    %     seg_strainps(region,:) = mean(strainps{i}(pointsSeg == region,:));
+     end
 
     % for time = 1:size(segRSCT,2)
     %     seg_strainpf(:,time) = (seg_strainF(:,time)  - seg_strainF(:,1));%./segStrainF(:,1);
@@ -141,26 +141,26 @@ for pat = 1:8
     %     seg_strainps(:,time) = (seg_strainS(:,time)  - seg_strainS(:,1));%./segStrainF(:,1);
     % end
 
-    peakstrainPSM = [min(seg_strain,[],2), min(seg_strainpf,[],2),min(seg_strainpc,[],2),min(seg_strainps,[],2)];
+    peakstrainPSM = [min(seg_strain,[],2)];%, min(seg_strainpf,[],2),min(seg_strainpc,[],2),min(seg_strainps,[],2)];
     peakstrainRSCT = min(segRSCT,[],2);
-    ESstrainPSM = [seg_strain(:,ESindx), seg_strainpf(:,ESindx),seg_strainpc(:,ESindx),seg_strainps(:,ESindx)];
+    ESstrainPSM = [seg_strain(:,ESindx)];%, seg_strainpf(:,ESindx),seg_strainpc(:,ESindx),seg_strainps(:,ESindx)];
     ES_RSCT = segRSCT(:,ESindx);
-    %straintype = {peakstrainPSM,peakstrainRSCT;ESstrainPSM,ES_RSCT};
+    % %straintype = {peakstrainPSM,peakstrainRSCT;ESstrainPSM,ES_RSCT};
     PSMstraintype = {peakstrainPSM;ESstrainPSM};
     RSCTstraintype = {peakstrainRSCT;ES_RSCT};
     straintype_indx = 1;
     
         estimate1 = data_analysis(PSMstraintype{straintype_indx}(:,1),RSCTstraintype{straintype_indx},1,1);%data_analysis(min(seg_strain,[],2),min(segRSCT,[],2),1);
-        estimate2 = data_analysis(PSMstraintype{straintype_indx}(:,2),RSCTstraintype{straintype_indx},1,1);
-        estimate3 = data_analysis(PSMstraintype{straintype_indx}(:,3),RSCTstraintype{straintype_indx},1,1);
-        estimate4 = data_analysis(PSMstraintype{straintype_indx}(:,4),RSCTstraintype{straintype_indx},1,1);
-    
-        %normality(pat,:) = [estimate1(1),estimate2(1),estimate3(1)];
-        r(i,:) = [estimate1(8), estimate2(8), estimate3(8), estimate4(8)];
-        p(i,:) = [estimate1(9), estimate2(9), estimate3(9),estimate4(9)];
-        m(i,:) = [estimate1(10), estimate2(10), estimate3(10),estimate4(10)];
-        b(i,:) = [estimate1(11), estimate2(11), estimate3(11),estimate4(11)];
-        title =  {'Peak Strain';'End-Systolic Strain'};
+        % estimate2 = data_analysis(PSMstraintype{straintype_indx}(:,2),RSCTstraintype{straintype_indx},1,1);
+        % estimate3 = data_analysis(PSMstraintype{straintype_indx}(:,3),RSCTstraintype{straintype_indx},1,1);
+        % estimate4 = data_analysis(PSMstraintype{straintype_indx}(:,4),RSCTstraintype{straintype_indx},1,1);
+        % 
+        normality(pat,:) = [estimate1(1)];%,estimate2(1),estimate3(1)];
+        r(i,:) = [estimate1(8)]; %, estimate2(8), estimate3(8), estimate4(8)];
+        p(i,:) = [estimate1(9)]; %, estimate2(9), estimate3(9),estimate4(9)];
+        m(i,:) = [estimate1(10)]; %, estimate2(10), estimate3(10),estimate4(10)];
+        b(i,:) = [estimate1(11)]; %, estimate2(11), estimate3(11),estimate4(11)];
+        % title =  {'Peak Strain';'End-Systolic Strain'};
   % [fig] = makeDirectionalScatterPlots(PSMstraintype{straintype_indx},RSCTstraintype{straintype_indx},i,r,p,b,m,title{straintype_indx});
  % saveas(gcf,['/Users/amandacraine/Documents/ContijochLab/repos/ac-biv-mwct-validation/Results/RSCT vs Ground Truth/Pat ',num2str(i),'_',title{straintype_indx},'_comp.jpg'])
 
@@ -169,26 +169,26 @@ end
 
 save([savepath 'seg_strain_allpats.mat'],'seg_strain_allpats')
 
-r_median = median(r);
-q1_r1 = prctile(r(:,1),25);
-q1_r2 = prctile(r(:,2),25);
-q1_r3 = prctile(r(:,3),25);
-q1_r4 = prctile(r(:,4),25);
-q4_r1 = prctile(r(:,1),75);
-q4_r2 = prctile(r(:,2),75);
-q4_r3 = prctile(r(:,3),75);
-q4_r4 = prctile(r(:,4),75);
-iqr_r = [q1_r1,q1_r2,q1_r3,q1_r4;q4_r1,q4_r2,q4_r3,q4_r4];
-m_median = median(m);
-q1_m1 = prctile(m(:,1),25);
-q1_m2 = prctile(m(:,2),25);
-q1_m3 = prctile(m(:,3),25);
-q1_m4 = prctile(m(:,4),25);
-q4_m1 = prctile(m(:,1),75);
-q4_m2 = prctile(m(:,2),75);
-q4_m3 = prctile(m(:,3),75);
-q4_m4 = prctile(m(:,4),75);
-iqr_m = [q1_m1,q1_m2,q1_m3,q1_m4;q4_m1,q4_m2,q4_m3,q4_m4];
+ r_median = median(r);
+ q1_r1 = prctile(r(:,1),25);
+% q1_r2 = prctile(r(:,2),25);
+% q1_r3 = prctile(r(:,3),25);
+% q1_r4 = prctile(r(:,4),25);
+ q4_r1 = prctile(r(:,1),75);
+% q4_r2 = prctile(r(:,2),75);
+% q4_r3 = prctile(r(:,3),75);
+% q4_r4 = prctile(r(:,4),75);
+% iqr_r = [q1_r1,q1_r2,q1_r3,q1_r4;q4_r1,q4_r2,q4_r3,q4_r4];
+ m_median = median(m);
+ q1_m1 = prctile(m(:,1),25);
+% q1_m2 = prctile(m(:,2),25);
+% q1_m3 = prctile(m(:,3),25);
+% q1_m4 = prctile(m(:,4),25);
+ q4_m1 = prctile(m(:,1),75);
+% q4_m2 = prctile(m(:,2),75);
+% q4_m3 = prctile(m(:,3),75);
+% q4_m4 = prctile(m(:,4),75);
+% iqr_m = [q1_m1,q1_m2,q1_m3,q1_m4;q4_m1,q4_m2,q4_m3,q4_m4];
 
 %% Plot ED and ES regional strain on the mesh
 clear title

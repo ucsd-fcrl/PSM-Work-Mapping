@@ -1,7 +1,7 @@
 %This script calculates principal curvatures by fitting the geometric model
 %to an ellipsoid
  
-%lines 30 - 125 actually collect and store segmental MW estimates with
+%lines 39 - 130 actually collect and store segmental MW estimates with
 %segmental wall stresses and strains
 
 % both segMWCT_effrad_allpats.mat and Laplace_measurements.mat variables
@@ -17,7 +17,7 @@ addpath([homepath,'/figures'])
 figpath = [homepath,'/figures/'];
 addpath([homepath,'/scripts/CRT Analysis Scripts/'])
 cd(homepath)
-load("WorkPSMLBBBCRT.mat")
+load dataPSMLBBBCRT.mat
 savepath = [homepath '/data-collected/'];
 
 %% test
@@ -37,10 +37,10 @@ axis off
 axis square
 
 %% can we fit an arbitrary ellipsoid to a segment or patch?
-clear; clc
-addpath([homepath,'scripts/ellipsoid_fit/ellipsoid_fit/'])
+%clear; clc
+addpath([homepath,'/scripts/ellipsoid_fit/ellipsoid_fit/'])
 load RS_CT.mat
-load WorkPSMLBBBCRT.mat
+load dataPSMLBBBCRT.mat
 
 warning off
 %datapath = '/Users/amandacraine/Documents/ContijochLab/repos/ac-continuity/';

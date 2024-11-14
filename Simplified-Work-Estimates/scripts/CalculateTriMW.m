@@ -1,5 +1,5 @@
 %% 
-% lines 3 - 73 contribute towards calculating myocardial work 
+% lines 3 - 78 contribute towards calculating myocardial work 
 clear; clc
 
 % NOTE: make sure your home path is the Simplified Work Estimates directory
@@ -10,7 +10,7 @@ addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
 savepath = [homepath '/data-collected/'];
 load RS_CT.mat
-load WorkPSMLBBBCRT.mat
+load dataPSMLBBBCRT.mat
 load seg_strain_allpats.mat
 
 %add normality calculation at the bottom and just run stats on each

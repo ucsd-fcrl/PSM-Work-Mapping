@@ -6,7 +6,7 @@ addpath([homepath,'/data/'])
 addpath([homepath,'/scripts'])
 addpath([homepath,'/LV Geometric Models'])
 cd(homepath)
-load("WorkPSMLBBBCRT.mat")
+load dataPSMLBBBCRT.mat
 savepath = [homepath '/data-collected/'];
 PatchAreas = cell(8,1);
 for pat = 1:8
